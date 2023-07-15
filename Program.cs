@@ -10,8 +10,7 @@ namespace opencv_proj
             // Load the cascade
             var faceCascade = new CascadeClassifier("haarcascade_frontalface_default.xml");
 
-            using (var capture = new VideoCapture(0))
-            using (var window = new Window("Camera"))
+            using (var capture = new VideoCapture("http://192.168.1.38:8080/video")) // Use VideoCapture("http://192.168.1.2:8080/video") for IP camera
             {
                 Mat frame = new Mat();
                 while (true)
@@ -40,8 +39,10 @@ namespace opencv_proj
                         }
                     }
 
+                    // Show the image in a window
                     Cv2.ImShow("Camera", frame);
 
+                    // Wait for a key press and break if one is detected
                     if (Cv2.WaitKey(1) >= 0)
                         break;
                 }
